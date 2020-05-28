@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Train: Data/API 1.1</title>
+</head>
+<body>
+    <h1>Photo credits to Max Di Capua from Unsplash!</h1>
+    <img src="" id="rainbow" width="100px" height="150px"/>
+    <script>
+        console.log('about to fetch a rainbow');
+
+        catchRainbow().catch(error => {
+            console.log('error!');
+            console.error(error);
+        })
+
+        catchRainbow().then(response =>{
+            console.log('yay');
+        })
+
+        async function catchRainbow() {
+            const response = await fetch('rainbow.jpg');
+            const blob = await response.blob();
+            document.getElementById('rainbow').src = URL.createObjectURL(blob);
+        }
+
+        catchRainbow();
+    </script>
+</body>
+</html>

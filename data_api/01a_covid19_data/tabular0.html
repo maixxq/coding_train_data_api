@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+</head>
+<body>
+    <canvas id="chart" width="900" height="400"></canvas>
+
+    <script>
+
+        chartit();
+        
+        async function chartit() {
+            const data = await getdata();
+            const ctx = document.getElementById('chart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'line',
+
+                data: {
+                    
+                    labels: data.dates, 
+                    datasets: [
+                        {
+                    label: 'Singapore',
+                    borderWidth: .5,
+                    pointRadius: 0.5,
+                    fill: false,
+                    borderColor: 'rgb(101, 112, 223)',
+                    data: data.sg
+                },
+                {
+                    label: 'China',
+                    borderWidth: .5,
+                    pointRadius: 0.5,
+                    fill: false,
+                    borderColor: 'rgb(204, 41, 54)',
+                    data: data.chn
+                },
+                {
+                    label: 'Indonesia',
+                    borderWidth: .5,
+                    pointRadius: 0.5,
+                    fill: false,
+                    borderColor: 'rgb(22, 231, 198)',
+                    data: data.idn
+                },
+                {
+                    label: 'USA',
+                    borderWidth: .5,
+                    pointRadius: 0.5,
+                    fill: false,
+                    borderColor: 'rgb(27, 40, 69)',
+                    data: data.us
+                },
+                {
+                    label: 'UK',
+                    borderWidth: .5,
+                    pointRadius: 0.5,
+                    fill: false,
+                    borderColor: 'rgb(188, 171, 121)',
+                    data: data.gbr
+                }
+                ]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Total Covid-19 Cases by Country',
+                        fontSize: 15
+        }
+    }
+            })
+            
+        }
+        async function getdata() {
+            const dates = [];
+            const sg = [];
+            const chn = [];
+            const idn = [];
+            const us = [];
+            const gbr = [];
+            const response = await fetch('test1.csv');
+            const data = await response.text();
+            const table = data.split('\n');
+            //console.log(table);
+            table.forEach(row => {
+                const col = row.split(',');
+                const location = col[0];
+                const total_cases = col[3];
+                if(location == 'SGP') {
+                    console.log("singapore!");
+                    sg.push(total_cases);
+                    //console.log(date,total_cases);
+                }
+                if(location == 'CHN') {
+                    console.log("china!");
+                    chn.push(total_cases);
+                }
+                if(location == 'IDN') {
+                    idn.push(total_cases);
+                }
+                if(location == 'USA') {
+                    us.push(total_cases);
+                    dates.push(col[2]);
+                }
+                if(location == 'GBR'){
+                    gbr.push(total_cases);
+                }
+
+            })
+            return {dates, sg, chn,idn,us,gbr};
+        }
+    </script>
+</body>
+</html>
