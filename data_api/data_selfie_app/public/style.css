@@ -1,0 +1,66 @@
+body {
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
+    margin: 100px auto;
+    background: #5DA9E9;
+}
+
+a {
+    outline: none;
+    text-decoration: none;
+    padding: 2px 1px 0;
+}
+
+a:link {
+    color: #E5F4E3;
+}
+
+a:visited {
+    color: #E5F4E3;
+}
+
+p,
+label {
+    font-size: 20px;
+    text-align: center;
+}
+
+#drink {
+    margin-top: 30px;
+    background: none;
+    border: 1px solid #E5F4E3;
+    border-radius: 16px;
+    margin: 1em;
+    padding: 1em 2em;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+#drink:focus {
+    border: none;
+}
+
+button {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 40px;
+    margin: 0 0 1em;
+    max-width: 100px;
+    text-decoration: none;
+    width: 100%;
+    border: 2px solid #FFBA08;
+    background: none;
+    border-radius: 16px;
+
+}
+
+#submit {
+    letter-spacing: 0;
+    text-align: center;
+
+}
+
+#submit:hover,
+#submit:active {
+    letter-spacing: 1px;
+}
